@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationController?.isNavigationBarHidden = true
         configureUserInterface()
         configureConstraints()
         showSavedUserInputData()
@@ -49,10 +49,9 @@ class DetailViewController: UIViewController {
         registerDateLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
         registerDateLabel.textColor = #colorLiteral(red: 0.2683359385, green: 0.3678353727, blue: 0.7584179044, alpha: 1)
         
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 20
-        imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        
+        imageView.contentMode = .scaleAspectFill
+//        imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+      
         view.addSubview(imageView)
         view.addSubview(contents)
         view.addSubview(registerDateLabel)
@@ -61,8 +60,15 @@ class DetailViewController: UIViewController {
     private func configureConstraints() {
         let guide = view.safeAreaLayoutGuide
         
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
-        
+//        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
+      
+      imageView.translatesAutoresizingMaskIntoConstraints = false
+      imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+      imageView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+      imageView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+      imageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.4).isActive = true
+      
+      
         registerDateLabel.translatesAutoresizingMaskIntoConstraints = false
         registerDateLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
         registerDateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true

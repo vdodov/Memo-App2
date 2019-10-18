@@ -137,7 +137,7 @@ struct Theme {
     
 }
 
-let themeName: [String] = ["하늘하늘", "블루블루", "핑크핑크", "보라보라", "그린그린", "히색히색", "노랑노랑"]
+let themeName: [String] = ["하늘하늘", "파랑파랑", "핑크핑크", "보라보라", "연두연두", "히색히색", "노랑노랑"]
 
 //let selectedThemeKey = "SelectedTheme"
 //

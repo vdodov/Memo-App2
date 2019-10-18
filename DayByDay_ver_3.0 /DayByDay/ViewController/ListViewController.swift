@@ -48,11 +48,11 @@ class ListViewController: UIViewController {
     
     // MARK: - configuration
     private func configureUserInterface() {
-        let settingVC = SettingViewController()
-        
+//        let settingVC = SettingViewController()
+      
         userMessageLabel.backgroundColor = .white
         userMessageLabel.textColor = .black
-        userMessageLabel.text = settingVC.userMessageLabel.text
+//        userMessageLabel.text = settingVC.userMessageLabel.text
         userMessageLabel.textAlignment = .center
         
         collectionView.backgroundColor = .white
