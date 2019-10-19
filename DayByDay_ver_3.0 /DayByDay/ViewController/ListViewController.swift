@@ -154,7 +154,7 @@ extension ListViewController: UICollectionViewDelegate {
         let detailVC = DetailViewController()
         let item = self.appDelegate.memolist[indexPath.item]
         detailVC.savedData = item
-        detailVC.title = self.appDelegate.memolist[indexPath.item].title
+//        detailVC.title = self.appDelegate.memolist[indexPath.item].title
         show(detailVC, sender: nil)
     }
     

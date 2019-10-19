@@ -11,12 +11,12 @@ import UIKit
 class SettingViewController: UIViewController {
   
   // MARK: - Properties
-  //    let topView = UIView()
-  //    let userImageView = UIImageView()
-  //    let userMessageLabel = UILabel()
-  //    let userUpdateButton = UIButton(type: .system)
-  
-  let tableView = UITableView()
+  let tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.tableFooterView = UIView() //여백추가하기 위함
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    return tableView
+  }()
   
   // MARK: - View life cycle
   override func viewDidLoad() {
@@ -26,75 +26,22 @@ class SettingViewController: UIViewController {
     configureConstraints()
   }
   
-  override func viewWillAppear(_ animated: Bool) {
-    //        let state = UserDefaults.standard.object(forKey: "state")
-    //        userMessageLabel.text = state as? String
-    //        let themeSave = UserDefaults.standard.data(forKey: "theme")
-  }
   
   // MARK: - configuration
   private func configureUserInterface() {
-    //        topView.backgroundColor = .white
-    
-    //        userImageView.layer.borderWidth = 1
-    //        userImageView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-    //        userImageView.layer.cornerRadius = 50
-    //        userImageView.clipsToBounds = true
-    //        userImageView.image = UIImage(named: "user")
-    
-    //        userMessageLabel.backgroundColor = .white
-    //        userMessageLabel.textAlignment = .center
-    //        userMessageLabel.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-    //        userMessageLabel.layer.borderWidth = 1
-    //        userMessageLabel.layer.cornerRadius = 10
-    //        userMessageLabel.clipsToBounds = true
-    
-    //        userUpdateButton.setTitle("상태메시지 수정", for: .normal)
-    //        userUpdateButton.addTarget(self, action: #selector(diduserUpdateButtonDidTap(_:)), for: .touchUpInside)
-    
-    tableView.tableFooterView = UIView() //여백추가하기 위함
     
     tableView.dataSource = self
     tableView.delegate = self
     
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    
-    //        view.addSubview(topView)
+  
     view.addSubview(tableView)
-    
-    //        topView.addSubview(userImageView)
-    //        topView.addSubview(userMessageLabel)
-    //        topView.addSubview(userUpdateButton)
+   
   }
   
   private func configureConstraints() {
     let guide = view.safeAreaLayoutGuide
     
-    //        topView.translatesAutoresizingMaskIntoConstraints = false
-    //        topView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-    //        topView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-    //        topView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-    //        topView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
-    
-    //        userImageView.translatesAutoresizingMaskIntoConstraints = false
-    //        userImageView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 20).isActive = true
-    //        userImageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 5).isActive = true
-    //        userImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-    //        userImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-    
-    //        userMessageLabel.translatesAutoresizingMaskIntoConstraints = false
-    //        userMessageLabel.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor).isActive = true
-    //        userMessageLabel.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10).isActive = true
-    //        userMessageLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-    //        userMessageLabel.widthAnchor.constraint(equalTo: topView.widthAnchor, multiplier: 0.7).isActive = true
-    
-    //        userUpdateButton.translatesAutoresizingMaskIntoConstraints = false
-    //        userUpdateButton.topAnchor.constraint(equalTo: userMessageLabel.bottomAnchor).isActive = true
-    //        userUpdateButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -10).isActive = true
-    //        userUpdateButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-    //        userUpdateButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
     tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
@@ -102,33 +49,6 @@ class SettingViewController: UIViewController {
     
   }
   
-  //    private func configureAlertAction() {
-  //
-  //        let alert = UIAlertController(title: "수정", message: "", preferredStyle: .alert)
-  //        alert.addTextField { (tf) in
-  //            tf.placeholder = "내용을 입력하세요."
-  //
-  //        }
-  //        let okAction = UIAlertAction(title: "수정하기", style: .default) { (_) in
-  //
-  //            if let typingSomething = alert.textFields?[0].text {
-  //                self.userMessageLabel.text = typingSomething
-  //                UserDefaults.standard.set(typingSomething, forKey: "state")
-  //
-  //            }
-  //            print("수정하기")
-  //        }
-  //        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
-  //
-  //        alert.addAction(okAction)
-  //        alert.addAction(cancelAction)
-  //        self.present(alert, animated: true)
-  //    }
-  
-  // MARK: - Action method
-  //    @objc private func diduserUpdateButtonDidTap(_ sender: UIButton) {
-  //        configureAlertAction()
-  //    }
 }
 
 // MARK: - tableView dataSource extension
@@ -149,14 +69,6 @@ extension SettingViewController: UITableViewDataSource {
     cell.selectionStyle = .none
     cell.textLabel?.text = themeName[indexPath.row]
     
-    //check mark
-//    switch checkThema[themeName[indexPath.row]] {
-//    case true:
-//      cell.accessoryType = .checkmark
-//    default:
-//      cell.accessoryType = .none
-//    }
-    
     return cell
   }
   
@@ -172,42 +84,49 @@ extension SettingViewController: UITableViewDelegate {
     switch indexPath.row {
       
     case 0:
+      UserDefaults.standard.set(0, forKey: "myThema")
       Theme.defaultTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint
       tabBarController?.tabBar.barTintColor = Theme.tabBarTint
       tabBarController?.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     case 1:
+      UserDefaults.standard.set(1, forKey: "myThema")
       Theme.darkBlueTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint
       tabBarController?.tabBar.barTintColor = Theme.tabBarTint
       tabBarController?.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     case 2:
+      UserDefaults.standard.set(2, forKey: "myThema")
       Theme.pinkTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint
       tabBarController?.tabBar.barTintColor = Theme.tabBarTint
       tabBarController?.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     case 3:
+      UserDefaults.standard.set(3, forKey: "myThema")
       Theme.violetTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint
       tabBarController?.tabBar.barTintColor = Theme.tabBarTint
       tabBarController?.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     case 4:
+      UserDefaults.standard.set(4, forKey: "myThema")
       Theme.greenTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint
       tabBarController?.tabBar.barTintColor = Theme.tabBarTint
       tabBarController?.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     case 5:
+      UserDefaults.standard.set(5, forKey: "myThema")
       Theme.grayTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint
       tabBarController?.tabBar.barTintColor = Theme.tabBarTint
       tabBarController?.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     case 6:
+      UserDefaults.standard.set(6, forKey: "myThema")
       Theme.yellowTheme()
       
       tabBarController?.tabBar.tintColor = Theme.tabBarBarTint

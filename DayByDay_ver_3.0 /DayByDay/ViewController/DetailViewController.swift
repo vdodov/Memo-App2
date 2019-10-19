@@ -9,96 +9,185 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
-    // MARK: - Properties
-    var savedData: MemoData?
-    let contents = UITextView()
+  
+  // MARK: - Properties
+  let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  var savedData: MemoData?
+  
+  let imageView: UIImageView = {
     let imageView = UIImageView()
-    let registerDateLabel = UILabel()
+    imageView.contentMode = .scaleAspectFill
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+  //Date and Content
+  let tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.tableFooterView = UIView()
+    tableView.separatorStyle = .none
+    tableView.register(DateTableViewCell.self, forCellReuseIdentifier: DateTableViewCell.identifier)
+    tableView.register(ContentTableViewCell.self, forCellReuseIdentifier: ContentTableViewCell.identifier)
     
-    // MARK: - View life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
-        configureUserInterface()
-        configureConstraints()
-        showSavedUserInputData()
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    return tableView
+  }()
+  
+  let bottomView: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  let label: UILabel = {
+    let label = UILabel()
+    label.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  let menuButton: UIButton = {
+    let button = UIButton(type: .custom)
+    button.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+    button.addTarget(self, action: #selector(didTapMenuButton(_:)), for: .touchUpInside)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return button
+  }()
+
+  let dismissButton: UIButton = {
+    let button = UIButton(type: .custom)
+    button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
+    button.addTarget(self, action: #selector(didTapDismissButton(_:)), for: .touchUpInside)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    return button
+  }()
+  
+  // MARK: - View life cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    
+    //naviBar 숨김
+    
+    configureUserInterface()
+    configureConstraints()
+    showSavedUserInputData()
+  }
+  
+  // MARK: - configuration
+  private func configureUserInterface() {
+    tableView.dataSource = self
+    
+    view.addSubview(imageView)
+    view.addSubview(tableView)
+    view.addSubview(bottomView)
+    view.addSubview(label)
+    
+    bottomView.addSubview(menuButton)
+    bottomView.addSubview(dismissButton)
+  }
+  
+  private func configureConstraints() {
+    let guide = view.safeAreaLayoutGuide
+    
+    imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    imageView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    imageView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    imageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.4).isActive = true
+    
+    tableView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
+    tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
+    
+    bottomView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    bottomView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    bottomView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+    bottomView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.05).isActive = true
+    
+    label.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
+    label.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    label.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    label.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    
+    menuButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 10).isActive = true
+    menuButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 20).isActive = true
+    menuButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor).isActive = true
+    menuButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+    menuButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+    
+    dismissButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 15).isActive = true
+    dismissButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -20).isActive = true
+    dismissButton.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor).isActive = true
+    dismissButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    dismissButton.heightAnchor.constraint(equalToConstant: 23).isActive = true
+  }
+  
+  // MARK: - Action method
+  private func showSavedUserInputData() {
+    imageView.image = savedData?.image
+    
+  }
+  
+  
+  @objc private func didTapMenuButton(_ sender: UIButton) {
+    print("didTapMenuButton")
+    
+    let actionSheet = UIAlertController(title: "", message: "원하는 메뉴를 선택해주세요.", preferredStyle: .actionSheet)
+    let modifyAction = UIAlertAction(title: "수정하기", style: .default) { (_) in
+      print("수정하기")
     }
-    
-    // MARK: - configuration
-    private func configureUserInterface() {
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
-        let toolBarKeyboard = UIToolbar()
-        toolBarKeyboard.sizeToFit()
-        let buttonflexBar = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let buttonDoneBar = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.doneButtonClicked(_sender:)))
-        toolBarKeyboard.items = [buttonflexBar, buttonDoneBar]
-        toolBarKeyboard.tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-        
-        contents.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        contents.textColor = #colorLiteral(red: 0.2683359385, green: 0.3678353727, blue: 0.7584179044, alpha: 1)
-        contents.layer.cornerRadius = 10
-        contents.layer.borderColor = #colorLiteral(red: 0.2142035365, green: 0.6806999445, blue: 0.986015141, alpha: 1)
-        contents.layer.borderWidth = 0.5
-        contents.clipsToBounds = true
-        contents.textAlignment = .center
-        contents.inputAccessoryView = toolBarKeyboard
-        contents.text = "asdfasdfsdf"
-        
-        registerDateLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
-        registerDateLabel.textColor = #colorLiteral(red: 0.2683359385, green: 0.3678353727, blue: 0.7584179044, alpha: 1)
-        
-        imageView.contentMode = .scaleAspectFill
-//        imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    let deleteAction = UIAlertAction(title: "삭제하기", style: .destructive) { (_) in
+      print("삭제하기")
+
       
-        view.addSubview(imageView)
-        view.addSubview(contents)
-        view.addSubview(registerDateLabel)
+    }
+    let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in
+      print("취소하기")
     }
     
-    private func configureConstraints() {
-        let guide = view.safeAreaLayoutGuide
-        
-//        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
-      
-      imageView.translatesAutoresizingMaskIntoConstraints = false
-      imageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-      imageView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-      imageView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-      imageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.4).isActive = true
-      
-      
-        registerDateLabel.translatesAutoresizingMaskIntoConstraints = false
-        registerDateLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10).isActive = true
-        registerDateLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
-        registerDateLabel.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
-        registerDateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        contents.translatesAutoresizingMaskIntoConstraints = false
-        contents.topAnchor.constraint(equalTo: registerDateLabel.bottomAnchor, constant: 10).isActive = true
-        contents.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 20).isActive = true
-        contents.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -20).isActive = true
-        contents.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -20).isActive = true
-        
-    }
+    actionSheet.addAction(modifyAction)
+    actionSheet.addAction(deleteAction)
+    actionSheet.addAction(cancelAction)
+    present(actionSheet, animated: true)
     
-    // MARK: - Action method
-    private func showSavedUserInputData() {
-        // 제목, 내용, 이미지 출력
-        self.contents.text = savedData?.contents
-        self.imageView.image = savedData?.image
-        
-        // 날짜 포맷 변환
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd일 HH:mm분에 작성됨"
-        let dateString = formatter.string(from: (savedData?.registerDate)!)
-        
-        // 레이블에 날짜 표시
-        self.registerDateLabel.text = dateString
-    }
+  }
+  
+  @objc private func didTapDismissButton(_ sender: UIButton) {
+    print("didTapDismissButton")
+    dismiss(animated: false, completion: nil)
+  }
+}
+
+
+extension DetailViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 2
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    @objc private func doneButtonClicked (_sender: Any) {
-        self.view.endEditing(true)
+    switch indexPath.row {
+    case 0:
+      let cell = tableView.dequeueReusableCell(withIdentifier: DateTableViewCell.identifier, for: indexPath) as! DateTableViewCell
+      // 날짜 포맷 변환
+      let formatter = DateFormatter()
+      formatter.dateFormat = "EEE. MMM dd / yyyy "
+      //FRI. OCT 18 / 2019
+      let dateString = formatter.string(from: (savedData?.registerDate)!)
+      let upper = dateString.uppercased()
+      
+      // 레이블에 날짜 표시 -> 대문자로
+      cell.dateLabel.text = upper
+      return cell
+    case 1:
+      let cell = tableView.dequeueReusableCell(withIdentifier: ContentTableViewCell.identifier, for: indexPath) as! ContentTableViewCell
+      cell.contentLabel.text = savedData?.contents
+      return cell
+    default:
+      fatalError()
     }
+  }
+  
+  
 }

@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A090D303735FD24F7A306E44 /* Pods_DayByDay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC63E8833D5D01292614BCF1 /* Pods_DayByDay.framework */; };
+		E620307E2359A95100AE27AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E620307D2359A95100AE27AB /* Assets.xcassets */; };
+		E6F1F064235989EA00C25D46 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1F063235989EA00C25D46 /* DateTableViewCell.swift */; };
+		E6F1F06623598D7600C25D46 /* ContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F1F06523598D7600C25D46 /* ContentTableViewCell.swift */; };
 		F3A3978522962B730064460D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A3978422962B730064460D /* AppDelegate.swift */; };
 		F3A3978722962B730064460D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A3978622962B730064460D /* ViewController.swift */; };
 		F3A3978A22962B730064460D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A3978822962B730064460D /* Main.storyboard */; };
 		F3A3978D22962B730064460D /* DayByDay.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3A3978B22962B730064460D /* DayByDay.xcdatamodeld */; };
-		F3A3978F22962B740064460D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3A3978E22962B740064460D /* Assets.xcassets */; };
 		F3A3979222962B740064460D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3A3979022962B740064460D /* LaunchScreen.storyboard */; };
 		F3A3979A22962BFF0064460D /* MemoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A3979922962BFF0064460D /* MemoData.swift */; };
 		F3A3979C22962C6A0064460D /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A3979B22962C6A0064460D /* CustomTabBarViewController.swift */; };
@@ -28,12 +30,14 @@
 		19AA6F65D35D5FD1E3D5DCD2 /* Pods-DayByDay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayByDay.release.xcconfig"; path = "Target Support Files/Pods-DayByDay/Pods-DayByDay.release.xcconfig"; sourceTree = "<group>"; };
 		B2BB0AA46A9D6AB49A9E171B /* Pods-DayByDay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayByDay.debug.xcconfig"; path = "Target Support Files/Pods-DayByDay/Pods-DayByDay.debug.xcconfig"; sourceTree = "<group>"; };
 		CC63E8833D5D01292614BCF1 /* Pods_DayByDay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DayByDay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E620307D2359A95100AE27AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
+		E6F1F063235989EA00C25D46 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
+		E6F1F06523598D7600C25D46 /* ContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewCell.swift; sourceTree = "<group>"; };
 		F3A3978122962B730064460D /* DayByDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayByDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A3978422962B730064460D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3A3978622962B730064460D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F3A3978922962B730064460D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3A3978C22962B730064460D /* DayByDay.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DayByDay.xcdatamodel; sourceTree = "<group>"; };
-		F3A3978E22962B740064460D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3A3979122962B740064460D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3A3979322962B740064460D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3A3979922962BFF0064460D /* MemoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoData.swift; sourceTree = "<group>"; };
@@ -75,6 +79,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E6F1F0622359897600C25D46 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E6F1F063235989EA00C25D46 /* DateTableViewCell.swift */,
+				E6F1F06523598D7600C25D46 /* ContentTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		F3A3977822962B720064460D = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +114,11 @@
 				F3A397A8229640E90064460D /* ViewController */,
 				F3A397A9229642280064460D /* Custom */,
 				F3A3978822962B730064460D /* Main.storyboard */,
-				F3A3978E22962B740064460D /* Assets.xcassets */,
+				E6F1F0622359897600C25D46 /* Cell */,
 				F3A3979022962B740064460D /* LaunchScreen.storyboard */,
 				F3A3979322962B740064460D /* Info.plist */,
 				F3A3978B22962B730064460D /* DayByDay.xcdatamodeld */,
+				E620307D2359A95100AE27AB /* Assets.xcassets */,
 			);
 			path = DayByDay;
 			sourceTree = "<group>";
@@ -200,7 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3A3979222962B740064460D /* LaunchScreen.storyboard in Resources */,
-				F3A3978F22962B740064460D /* Assets.xcassets in Resources */,
+				E620307E2359A95100AE27AB /* Assets.xcassets in Resources */,
 				F3A3978A22962B730064460D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +271,8 @@
 				F3A397AB22968FBB0064460D /* Styles.swift in Sources */,
 				F3A3978D22962B730064460D /* DayByDay.xcdatamodeld in Sources */,
 				F3A3979C22962C6A0064460D /* CustomTabBarViewController.swift in Sources */,
+				E6F1F064235989EA00C25D46 /* DateTableViewCell.swift in Sources */,
+				E6F1F06623598D7600C25D46 /* ContentTableViewCell.swift in Sources */,
 				F3A3979A22962BFF0064460D /* MemoData.swift in Sources */,
 				F3A397A222962E090064460D /* CustomCollectionViewCell.swift in Sources */,
 				F3A3979E22962D5D0064460D /* DetailViewController.swift in Sources */,
