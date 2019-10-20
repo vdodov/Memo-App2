@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let tabBarVC = CustomTabBarViewController()
-    let vc = ViewController()
     window? = UIWindow(frame: UIScreen.main.bounds)
     
     window?.backgroundColor = .white
@@ -27,64 +26,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     
-    
-    guard let myThema = UserDefaults.standard.object(forKey: "myThema") else { return false }
-    
-    switch myThema {
-    case 0 as Int:
-      Theme.defaultTheme()
-      
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 기본")
-    case 1 as Int:
-      Theme.darkBlueTheme()
-      
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 다크블루")
-    case 2 as Int:
-      Theme.pinkTheme()
-      
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 핑크")
-    case 3 as Int:
-      Theme.violetTheme()
-      
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 바이올렛")
-    case 4 as Int:
-      Theme.greenTheme()
-      
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 그린")
-    case 5 as Int:
-      Theme.grayTheme()
-      
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 그레이")
-    case 6 as Int:
-      Theme.yellowTheme()
-
-      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
-      print("app 노랑")
-    default:
-      Theme.defaultTheme()
-      
-    }
-    print("app", myThema)
+    Theme.defaultTheme()
+//    guard let myThema = UserDefaults.standard.object(forKey: "myThema") else { return false }
+//
+//    switch myThema {
+//    case 0 as Int:
+//      Theme.defaultTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//    case 1 as Int:
+//      Theme.darkBlueTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 다크블루")
+//    case 2 as Int:
+//      Theme.pinkTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 핑크")
+//    case 3 as Int:
+//      Theme.violetTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 바이올렛")
+//    case 4 as Int:
+//      Theme.greenTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 그린")
+//    case 5 as Int:
+//      Theme.grayTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 그레이")
+//    case 6 as Int:
+//      Theme.yellowTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 노랑")
+//    case nil: //앱 처음 깔았을때
+//      Theme.defaultTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//    default:
+//      Theme.defaultTheme()
+//
+//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//
+//    }
+//    print("app", myThema)
     return true
   }
   

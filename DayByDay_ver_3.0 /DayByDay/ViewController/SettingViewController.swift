@@ -11,6 +11,22 @@ import UIKit
 class SettingViewController: UIViewController {
   
   // MARK: - Properties
+  
+  let topView: UIView = {
+    let view = UIView()
+    view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  let titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = "설정"
+    label.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
   let tableView: UITableView = {
     let tableView = UITableView()
     tableView.tableFooterView = UIView() //여백추가하기 위함
@@ -35,14 +51,27 @@ class SettingViewController: UIViewController {
     
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
   
+    view.addSubview(topView)
+    topView.addSubview(titleLabel)
+    
     view.addSubview(tableView)
+    
+  
    
   }
   
   private func configureConstraints() {
     let guide = view.safeAreaLayoutGuide
     
-    tableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    topView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+    topView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+    topView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+    topView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.12).isActive = true
+    
+    titleLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 5).isActive = true
+    titleLabel.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -5).isActive = true
+    
+    tableView.topAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
     tableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
     tableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
     tableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
