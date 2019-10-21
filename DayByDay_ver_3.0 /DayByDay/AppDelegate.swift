@@ -23,11 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.backgroundColor = .white
     window?.rootViewController = tabBarVC
     window?.makeKeyAndVisible()
-    
+    print("hello")
     UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     
-    Theme.defaultTheme()
-//    guard let myThema = UserDefaults.standard.object(forKey: "myThema") else { return false }
+//    let myThema = UserDefaults.standard.object(forKey: "myThema")
 //
 //    switch myThema {
 //    case 0 as Int:
@@ -36,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
 //      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
 //      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app 기본")
 //    case 1 as Int:
 //      Theme.darkBlueTheme()
 //
@@ -81,18 +81,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    case nil: //앱 처음 깔았을때
 //      Theme.defaultTheme()
 //
-//      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
-//      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
-//      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+////      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
+////      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
+////      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app nil")
 //    default:
 //      Theme.defaultTheme()
 //
 //      tabBarVC.tabBar.tintColor = Theme.tabBarBarTint
 //      tabBarVC.tabBar.barTintColor = Theme.tabBarTint
 //      tabBarVC.tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+//      print("app default")
 //
 //    }
 //    print("app", myThema)
+    Theme.defaultTheme()
     return true
   }
   

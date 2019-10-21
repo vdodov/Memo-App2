@@ -11,15 +11,15 @@ import UIKit
 
 struct Theme {
   
-  static var tabBarTint: UIColor?
-  static var tabBarBarTint: UIColor?
-  static var tabBarUnselectedTintColor: UIColor?
-  static var writeButton: UIColor?
-  static var dateLabel: UIColor?
-  static var mainLabel: UIColor?
-  static var cardView: UIColor?
-  static var cardViewText: UIColor?
-  static var buttonText: UIColor?
+  static var tabBarTint = #colorLiteral(red: 0.4621340632, green: 0.8370614648, blue: 1, alpha: 1)
+  static var tabBarBarTint = #colorLiteral(red: 0.1071653441, green: 0.2755028009, blue: 0.3986083865, alpha: 1)
+  static var tabBarUnselectedTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+  static var writeButton = #colorLiteral(red: 0.4621340632, green: 0.8370614648, blue: 1, alpha: 1)
+  static var dateLabel = #colorLiteral(red: 0.176399827, green: 0.4986500144, blue: 0.757831037, alpha: 1)
+  static var mainLabel = #colorLiteral(red: 0.4621340632, green: 0.8370614648, blue: 1, alpha: 1)
+  static var cardView = #colorLiteral(red: 0.4621340632, green: 0.8370614648, blue: 1, alpha: 1)
+  static var cardViewText = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+  static var buttonText = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
   
   static public func defaultTheme() {
     self.tabBarTint = #colorLiteral(red: 0.4621340632, green: 0.8370614648, blue: 1, alpha: 1)
@@ -105,6 +105,34 @@ struct Theme {
     self.buttonText = #colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1)
   }
   
+  static public func updateDisplay() {
+    let proxyButton = UIButton.appearance()
+    proxyButton.backgroundColor = Theme.writeButton
+    
+    let proxyDateLabel = UILabel.appearance()
+    proxyDateLabel.textColor = Theme.dateLabel
+    
+    let proxyTextLabel = UILabel.appearance()
+    proxyTextLabel.textColor = Theme.mainLabel
+    
+    let proxyTabBarTint = UITabBar.appearance()
+    proxyTabBarTint.tintColor = Theme.tabBarBarTint
+    
+    let proxyTapBarColor = UITabBar.appearance()
+    proxyTapBarColor.barTintColor = Theme.tabBarTint
+    
+    let proxyTapBarUnselect = UITabBar.appearance()
+    proxyTapBarUnselect.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+    
+    let proxyCellColor = UIView.appearance()
+    proxyCellColor.backgroundColor = Theme.cardView
+    
+    let proxyCellTextColor = UILabel.appearance()
+    proxyCellTextColor.textColor = Theme.cardViewText
+    
+    let proxyButtonText = UIButton.appearance()
+    proxyButtonText.titleLabel?.textColor = Theme.buttonText
+  }
   
 }
 

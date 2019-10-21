@@ -25,9 +25,9 @@ class CustomTabBarViewController: UITabBarController {
     backgroundView.isHidden = true
     
     tabBar.isTranslucent = false
-//    tabBar.tintColor = Theme.tabBarBarTint
-//    tabBar.barTintColor = Theme.tabBarTint
-//    tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
+    tabBar.tintColor = Theme.tabBarBarTint
+    tabBar.barTintColor = Theme.tabBarTint
+    tabBar.unselectedItemTintColor = Theme.tabBarUnselectedTintColor
     
     UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .bold)], for: .normal)
     

@@ -30,9 +30,7 @@ class ViewController: UIViewController {
   // MARK: - View life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    guard let myThema = UserDefaults.standard.object(forKey: "myThema") else { return }
-    print("mmmmmmm", myThema)
-//    changeTheme()
+    
     configureUserInterface()
     configureConstraints()
     configureNotification()
