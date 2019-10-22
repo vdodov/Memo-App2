@@ -54,8 +54,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
   
   let deleteButton: UIButton = {
     let button = UIButton(type: .custom)
-    button.setImage(UIImage(named: "trashwhite"), for: .normal)
-    button.addTarget(self, action: #selector(removeButtonDidTap(_:)), for: .touchUpInside)
+    
     return button
   }()
   
@@ -65,6 +64,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     addSubview()
     autoLayout()
+    configure()
     changeColor()
   }
   
@@ -113,8 +113,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
     deleteButton.translatesAutoresizingMaskIntoConstraints = false
     deleteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
     deleteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-  }
 
+  }
+  
+  func configure() {
+    deleteButton.setImage(#imageLiteral(resourceName: "trashwhite"), for: .normal)
+    deleteButton.addTarget(self, action: #selector(removeButtonDidTap(_:)), for: .touchUpInside)
+  }
   
   
   @objc func removeButtonDidTap(_ sender: UIButton) {

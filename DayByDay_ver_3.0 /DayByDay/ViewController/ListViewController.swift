@@ -140,7 +140,7 @@ extension ListViewController: UICollectionViewDataSource {
     // Date 타입의 날짜 포맷지정
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM"
-    cell.monthLabel.text = formatter.string(from: item.registerDate!)
+    cell.monthLabel.text = formatter.string(from: item.registerDate!).uppercased()
     
     formatter.dateFormat = "dd"
     cell.dateLabel.text = formatter.string(from: item.registerDate!)

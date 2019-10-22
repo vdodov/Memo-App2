@@ -82,6 +82,7 @@
 		E6F1F0622359897600C25D46 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				F3A397A122962E090064460D /* CustomCollectionViewCell.swift */,
 				E6F1F063235989EA00C25D46 /* DateTableViewCell.swift */,
 				E6F1F06523598D7600C25D46 /* ContentTableViewCell.swift */,
 			);
@@ -148,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				F3A3979B22962C6A0064460D /* CustomTabBarViewController.swift */,
-				F3A397A122962E090064460D /* CustomCollectionViewCell.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";

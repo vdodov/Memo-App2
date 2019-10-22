@@ -31,6 +31,7 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     configureUserInterface()
     configureConstraints()
     configureNotification()
@@ -78,7 +79,7 @@ class ViewController: UIViewController {
     scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     
     imageView.contentMode = .scaleAspectFit
-    //    imageView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    imageView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     imageView.image = UIImage(named: "default")
     imageView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
     imageView.layer.borderWidth = 2
